@@ -5,7 +5,11 @@ from aiogram.utils import executor
 # ===========================
 # إعدادات البوت
 # ===========================
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # نأخذ التوكن من متغير البيئة
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if BOT_TOKEN is None:
+    print("⚠️ BOT_TOKEN is not set! Check Render environment variables.")
+
 ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 DEFAULT_LANGUAGE = "ar"
 
@@ -69,3 +73,4 @@ async def process_language(callback_query: types.CallbackQuery):
 if __name__ == "__main__":
     print("Bot is running...")
     executor.start_polling(dp, skip_updates=True)
+
